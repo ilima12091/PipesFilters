@@ -14,7 +14,7 @@ namespace CompAndDel.Filters
             return image;
         }
 
-        public void Persist(IPicture image, string pathToPersist)
+        private void Persist(IPicture image, string pathToPersist)
         {
             PictureProvider provider = new PictureProvider();
             provider.SavePicture(image,pathToPersist);
