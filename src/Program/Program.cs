@@ -15,9 +15,11 @@ namespace CompAndDel
             FilterGreyscale filterGreyscale = new FilterGreyscale();
             FilterNegative filterNegative = new FilterNegative();
             FilterStoreImage filterStoreGreyScaleImage = new FilterStoreImage("GonzaloGreyScaleImageFilter.jpg");
+            FilterPostTwitter filterPostTwitter = new FilterPostTwitter();
 
             PipeNull pipeNull = new PipeNull();
-            PipeSerial pipeSerialNegative = new PipeSerial(filterNegative, pipeNull);
+            PipeSerial pipeSerialPostToTwitter = new PipeSerial(filterPostTwitter, pipeNull);
+            PipeSerial pipeSerialNegative = new PipeSerial(filterNegative, pipeSerialPostToTwitter);
             PipeSerial pipeSerialStoreGreyScaleImage = new PipeSerial(filterStoreGreyScaleImage, pipeSerialNegative);
             PipeSerial pipeSerialGreyScale = new PipeSerial(filterGreyscale, pipeSerialStoreGreyScaleImage);
 
